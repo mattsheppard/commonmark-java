@@ -124,6 +124,7 @@ public class CoreCommonMarkNodeRenderer extends AbstractVisitor implements NodeR
 
     @Override
     public void visit(Image image) {
+        textContent.write('!');
         writeLink(image, image.getTitle(), image.getDestination());
     }
 
@@ -202,35 +203,27 @@ public class CoreCommonMarkNodeRenderer extends AbstractVisitor implements NodeR
     }
 
     private void writeLink(Node node, String title, String destination) {
-        boolean hasChild = node.getFirstChild() != null;
         boolean hasTitle = title != null;
         boolean hasDestination = destination != null && !destination.equals("");
 
-        if (hasChild) {
-            textContent.write('"');
-            visitChildren(node);
-            textContent.write('"');
-            if (hasTitle || hasDestination) {
-                textContent.whitespace();
-                textContent.write('(');
-            }
-        }
-
-        if (hasTitle) {
-            textContent.write(title);
-            if (hasDestination) {
-                textContent.colon();
-                textContent.whitespace();
-            }
-        }
+        textContent.write('[');
+        visitChildren(node);
+        textContent.write("](");
 
         if (hasDestination) {
             textContent.write(destination);
         }
 
-        if (hasChild && (hasTitle || hasDestination)) {
-            textContent.write(')');
+        if (hasTitle) {
+            if (hasDestination) {
+                textContent.whitespace();
+            }
+            textContent.write('"');
+            textContent.write(title);
+            textContent.write('"');
         }
+
+        textContent.write(')');
     }
 
     private void writeEndOfLine(Node node, Character c) {
