@@ -10,7 +10,7 @@ import org.junit.Test;
 public class CommonMarkRendererTest {
 
     @Test
-    public void textContentEmphasis() {
+    public void testEmphasis() {
         String rendered;
 
         rendered = defaultRenderer().render(parse("foo\n***foo***\nbar\n\n***bar***"));
@@ -18,7 +18,7 @@ public class CommonMarkRendererTest {
     }
 
     @Test
-    public void textContentQuotes() {
+    public void testQuotes() {
         String rendered;
 
         rendered = defaultRenderer().render(parse("foo\n>foo\nbar\n\nbar"));
@@ -26,7 +26,7 @@ public class CommonMarkRendererTest {
     }
 
     @Test
-    public void textContentLinks() {
+    public void testLinks() {
         String rendered;
 
         rendered = defaultRenderer().render(parse("foo [text](http://link \"title\") bar"));
@@ -43,7 +43,7 @@ public class CommonMarkRendererTest {
     }
 
     @Test
-    public void textContentImages() {
+    public void testImages() {
         String rendered;
 
         rendered = defaultRenderer().render(parse("foo ![text](http://link \"title\") bar"));
@@ -57,7 +57,7 @@ public class CommonMarkRendererTest {
     }
 
     @Test
-    public void textContentLists() {
+    public void testLists() {
         String rendered;
 
         rendered = defaultRenderer().render(parse("foo\n* foo\n* bar\n\nbar"));
@@ -74,7 +74,7 @@ public class CommonMarkRendererTest {
     }
 
     @Test
-    public void textContentCode() {
+    public void testCode() {
         String rendered;
 
         rendered = defaultRenderer().render(parse("foo `code` bar"));
@@ -82,7 +82,7 @@ public class CommonMarkRendererTest {
     }
 
     @Test
-    public void textContentCodeBlock() {
+    public void testCodeBlock() {
         String rendered;
 
         rendered = defaultRenderer().render(parse("foo\n```\nfoo\nbar\n```\nbar"));
@@ -93,7 +93,7 @@ public class CommonMarkRendererTest {
     }
 
     @Test
-    public void textContentBrakes() {
+    public void testBrakes() {
         String rendered;
 
         rendered = defaultRenderer().render(parse("foo\nbar"));
@@ -107,7 +107,7 @@ public class CommonMarkRendererTest {
     }
 
     @Test
-    public void textContentHtml() {
+    public void testHtml() {
         String roundtripped;
 
         String html = "<table>\n" +
