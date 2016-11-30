@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.commonmark.node.Node;
 import org.commonmark.parser.Parser;
-import org.commonmark.renderer.text.TextContentRenderer;
+import org.commonmark.renderer.commonmark.CommonMarkRenderer;
 import org.junit.Test;
 
 public class CommonMarkRendererTest {
@@ -125,8 +125,8 @@ public class CommonMarkRendererTest {
         assertEquals(html, roundtripped);
     }
 
-    private TextContentRenderer defaultRenderer() {
-        return TextContentRenderer.builder().build();
+    private CommonMarkRenderer defaultRenderer() {
+        return CommonMarkRenderer.builder().build();
     }
 
     private Node parse(String source) {
